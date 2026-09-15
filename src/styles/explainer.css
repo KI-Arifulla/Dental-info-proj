@@ -1,0 +1,240 @@
+.explainer-page {
+  max-width: none;
+  padding: 0;
+}
+
+.explainer-layout {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.82fr) minmax(330px, 0.72fr);
+  gap: 0;
+  transition: grid-template-columns 0.2s ease;
+}
+
+.patient-mode .explainer-layout {
+  grid-template-columns: minmax(0, 1.82fr) minmax(350px, 0.76fr);
+}
+
+.detail-info-panel {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 34px 32px 30px;
+  border: 0;
+  border-left: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--surface);
+}
+
+.detail-badge {
+  text-transform: uppercase;
+}
+
+.detail-info-panel .headline {
+  font-size: 2rem;
+}
+
+.patient-mode .detail-info-panel {
+  font-size: 1.08rem;
+}
+
+.patient-mode .detail-info-panel .headline {
+  font-size: 2.5rem;
+}
+
+.detail-info-panel .long-desc {
+  margin-top: 0;
+}
+
+.detail-info-panel .price-badge {
+  margin: 6px 0 18px;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 1.8rem;
+}
+
+.detail-pros {
+  margin-top: 20px;
+}
+
+.detail-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.detail-actions .btn-primary,
+.detail-actions .btn-secondary {
+  text-align: center;
+}
+
+.detail-viewer-panel {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  min-height: 620px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: var(--bg);
+}
+
+.detail-viewer-panel > div:first-child {
+  border-radius: 0 !important;
+}
+
+.model-label {
+  position: absolute;
+  top: 51%;
+  right: 9%;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.model-label span {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 10px);
+  width: 72px;
+  border-top: 1px solid var(--text-muted);
+}
+
+.viewer-controls {
+  position: absolute;
+  bottom: 32px;
+  left: 8%;
+  right: auto;
+  top: auto;
+  white-space: nowrap;
+}
+
+.viewer-controls .pill-controls-btn {
+  width: auto;
+  min-width: 64px;
+  height: 44px;
+  padding: 0 16px;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .explainer-layout,
+  .patient-mode .explainer-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-viewer-panel {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 520px;
+  }
+
+  .detail-info-panel {
+    grid-column: 1;
+    grid-row: 2;
+    border-top: 1px solid var(--border);
+    border-left: 0;
+  }
+
+  .viewer-controls {
+    bottom: 16px;
+    top: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    max-width: calc(100% - 24px);
+    overflow-x: auto;
+  }
+}
+
+.scene-sliders {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: min(340px, calc(100% - 48px));
+  display: grid;
+  gap: 14px;
+  padding: 16px 18px;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgb(23 25 24 / 8%);
+}
+
+.scene-slider {
+  display: grid;
+  gap: 6px;
+}
+
+.scene-slider-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.scene-slider-head label {
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.scene-slider input[type='range'] {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: grab;
+}
+
+.scene-slider input[type='range']:active {
+  cursor: grabbing;
+}
+
+.scene-slider-ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.scene-stage {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.scene-stage strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.model-loading,
+.model-error {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.model-error {
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+
+@media (max-width: 900px) {
+  .scene-sliders {
+    top: 12px;
+    left: 12px;
+    width: calc(100% - 24px);
+    padding: 12px 14px;
+  }
+}

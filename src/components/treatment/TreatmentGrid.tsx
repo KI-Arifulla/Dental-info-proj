@@ -3,7 +3,7 @@ import { TreatmentCard } from './TreatmentCard'
 
 export function TreatmentGrid({ treatments }: { treatments: Treatment[] }) {
   return (
-    <div className="grid">
+    <div className="grid treatment-grid">
       {treatments.map((t) => (
         <TreatmentCard key={t.id} treatment={t} />
       ))}

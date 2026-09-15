@@ -1,33 +1,14 @@
 import type { TreatmentOption } from '../../data/types'
 import { PriceBadge } from './PriceBadge'
 
-export function SpecSheet({ option }: { option: TreatmentOption }) {
+export function SpecSheet({ option, price }: { option: TreatmentOption; price: number }) {
   return (
     <div className="spec-sheet">
-      <h1>{option.name}</h1>
-      <PriceBadge priceRange={option.priceRange} />
+      {option.badge && <span className="eyebrow detail-badge">{option.badge}</span>}
+      <h1 className="headline">{option.name}</h1>
       <p className="long-desc">{option.longDescription}</p>
+      <PriceBadge price={price} />
 
-      <div className="pros-cons">
-        <div>
-          <h4>Pros</h4>
-          <ul className="pros">
-            {option.pros.map((p) => (
-              <li key={p}>✓ {p}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4>Cons</h4>
-          <ul className="cons">
-            {option.cons.map((c) => (
-              <li key={c}>✗ {c}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <h4>Specs</h4>
       <table className="spec-table">
         <tbody>
           {option.specs.map((s) => (
@@ -38,6 +19,15 @@ export function SpecSheet({ option }: { option: TreatmentOption }) {
           ))}
         </tbody>
       </table>
+
+      <div className="detail-pros">
+        <h4>Benefits</h4>
+        <ul className="pros">
+          {option.pros.map((pro) => (
+            <li key={pro}>{pro}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

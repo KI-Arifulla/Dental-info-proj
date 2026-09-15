@@ -1,0 +1,97 @@
+.settings-page {
+  max-width: 920px;
+}
+
+.settings-header {
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+
+.pricing-sections {
+  display: grid;
+  gap: 24px;
+}
+
+.pricing-section {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.pricing-section h2 {
+  margin: 0;
+  padding: 18px 20px;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+}
+
+.pricing-rows {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+}
+
+.price-setting-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 180px;
+  align-items: center;
+  gap: 4px 24px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.price-setting-row:last-child {
+  border-bottom: 0;
+}
+
+.price-setting-name {
+  grid-row: 1 / span 2;
+  font-weight: 700;
+}
+
+.price-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-muted);
+  background: var(--surface-muted);
+}
+
+.price-input-wrap:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.price-input-wrap input {
+  width: 100%;
+  padding: 10px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+}
+
+.price-setting-row small {
+  grid-column: 2;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+@media (max-width: 620px) {
+  .price-setting-row {
+    grid-template-columns: 1fr;
+  }
+
+  .price-setting-name,
+  .price-setting-row small {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}

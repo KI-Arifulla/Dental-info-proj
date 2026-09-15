@@ -1,63 +1,34 @@
 import type { TreatmentOption } from '../../data/types'
-import { formatPrice } from '../../utils/formatPrice'
 
-export function ComparisonTable({ options }: { options: TreatmentOption[] }) {
-  const specLabels = Array.from(new Set(options.flatMap((o) => o.specs.map((s) => s.label))))
-
-  function specValue(option: TreatmentOption, label: string) {
-    return option.specs.find((s) => s.label === label)?.value ?? '—'
-  }
-
+export function ComparisonTable({ option }: { option: TreatmentOption }) {
   return (
-    <table className="comparison-table">
-      <thead>
-        <tr>
-          <th></th>
-          {options.map((o) => (
-            <th key={o.id}>{o.name}</th>
+    <div className="comparison-details">
+      <table className="spec-table">
+        <tbody>
+          {option.specs.map((spec) => (
+            <tr key={spec.label}>
+              <td>{spec.label}</td>
+              <td>{spec.value}</td>
+            </tr>
           ))}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Price</td>
-          {options.map((o) => (
-            <td key={o.id}>{formatPrice(o.priceRange)}</td>
+        </tbody>
+      </table>
+      <div className="compare-list-block">
+        <h3>Benefits</h3>
+        <ul className="pros">
+          {option.pros.map((pro) => (
+            <li key={pro}>{pro}</li>
           ))}
-        </tr>
-        {specLabels.map((label) => (
-          <tr key={label}>
-            <td>{label}</td>
-            {options.map((o) => (
-              <td key={o.id}>{specValue(o, label)}</td>
-            ))}
-          </tr>
-        ))}
-        <tr>
-          <td>Pros</td>
-          {options.map((o) => (
-            <td key={o.id}>
-              <ul className="pros">
-                {o.pros.map((p) => (
-                  <li key={p}>✓ {p}</li>
-                ))}
-              </ul>
-            </td>
+        </ul>
+      </div>
+      <div className="compare-list-block">
+        <h3>Considerations</h3>
+        <ul className="cons">
+          {option.cons.map((con) => (
+            <li key={con}>{con}</li>
           ))}
-        </tr>
-        <tr>
-          <td>Cons</td>
-          {options.map((o) => (
-            <td key={o.id}>
-              <ul className="cons">
-                {o.cons.map((c) => (
-                  <li key={c}>✗ {c}</li>
-                ))}
-              </ul>
-            </td>
-          ))}
-        </tr>
-      </tbody>
-    </table>
+        </ul>
+      </div>
+    </div>
   )
 }

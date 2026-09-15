@@ -1,10 +1,15 @@
 import { useSearchParams } from 'react-router-dom'
 
-const MAX_COMPARE = 4
+const MAX_COMPARE = 3
 
-export function useSelection() {
+export function useSelection(validIds?: string[]) {
   const [searchParams, setSearchParams] = useSearchParams()
-  const selected = (searchParams.get('selected') ?? '').split(',').filter(Boolean)
+  const allowedIds = validIds ? new Set(validIds) : null
+  const selected = Array.from(
+    new Set((searchParams.get('selected') ?? '').split(',').filter(Boolean)),
+  )
+    .filter((id) => !allowedIds || allowedIds.has(id))
+    .slice(0, MAX_COMPARE)
 
   function toggle(id: string) {
     let next: string[]
@@ -15,11 +20,20 @@ export function useSelection() {
     } else {
       next = [...selected, id]
     }
-    setSearchParams(next.length ? { selected: next.join(',') } : {})
+    setSearchParams((current) => {
+      const params = new URLSearchParams(current)
+      if (next.length) params.set('selected', next.join(','))
+      else params.delete('selected')
+      return params
+    })
   }
 
   function clear() {
-    setSearchParams({})
+    setSearchParams((current) => {
+      const params = new URLSearchParams(current)
+      params.delete('selected')
+      return params
+    })
   }
 
   return { selected, toggle, clear, max: MAX_COMPARE }

@@ -1,0 +1,109 @@
+.lock-screen {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(380px, 0.8fr);
+  background: var(--bg);
+}
+
+.lock-branding {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px clamp(48px, 8vw, 120px);
+  background: var(--bg);
+}
+
+.lock-branding .headline {
+  max-width: 560px;
+  font-size: 3.4rem;
+}
+
+.lock-branding .subhead {
+  max-width: 520px;
+}
+
+.clinic-mark {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 44px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background-color: var(--surface);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M14 10c4-3 7-1 10 0 3-1 6-3 10 0 5 4 3 11 1 16-2 4-2 13-6 13-3 0-2-9-5-9s-2 9-5 9c-4 0-4-9-6-13-2-5-4-12 1-16Z' fill='none' stroke='%230d9488' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 34px;
+  box-shadow: 0 4px 14px rgba(23, 25, 24, 0.045);
+  font-size: 0;
+}
+
+.lock-keypad-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+
+.lock-keypad-panel h2 {
+  margin: 0 0 28px;
+  font-size: 1rem;
+}
+
+.lock-keypad-panel .keypad {
+  width: 284px;
+  gap: 18px;
+}
+
+.lock-keypad-panel .keypad-btn {
+  font-size: 1.15rem;
+  border-color: transparent;
+  background: var(--surface-muted);
+}
+
+.keypad-backspace {
+  border-color: transparent;
+  background: transparent !important;
+}
+
+.lock-skip {
+  align-self: center;
+  margin-top: 30px;
+}
+
+.keypad-error {
+  animation: keypad-shake 0.28s ease-in-out;
+}
+
+@keyframes keypad-shake {
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@media (max-width: 760px) {
+  .lock-screen {
+    grid-template-columns: 1fr;
+  }
+
+  .lock-branding {
+    padding: 36px 28px;
+  }
+
+  .lock-branding .headline {
+    font-size: 2.4rem;
+  }
+
+  .clinic-mark {
+    margin-bottom: 24px;
+  }
+
+  .lock-keypad-panel {
+    padding: 36px 24px;
+    border-top: 1px solid var(--border);
+    border-left: 0;
+  }
+}

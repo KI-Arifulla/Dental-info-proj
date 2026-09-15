@@ -1,0 +1,80 @@
+.library-page {
+  padding-top: 68px;
+}
+
+.library-content {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.library-intro {
+  max-width: 760px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+
+.treatment-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.treatment-card {
+  min-height: 348px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.treatment-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.treatment-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #dcecea;
+  border-radius: 13px;
+  background: var(--accent-soft);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M14 10c4-3 7-1 10 0 3-1 6-3 10 0 5 4 3 11 1 16-2 4-2 13-6 13-3 0-2-9-5-9s-2 9-5 9c-4 0-4-9-6-13-2-5-4-12 1-16Z' fill='none' stroke='%230d9488' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  font-size: 0;
+}
+
+.treatment-card h3 {
+  font-size: 1.35rem;
+  margin-top: 20px;
+}
+
+.treatment-option-list {
+  list-style: none;
+  padding: 16px 0 0;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+.treatment-explore-link {
+  margin-top: auto;
+  padding-top: 24px;
+  align-self: flex-start;
+}
+
+@media (max-width: 800px) {
+  .treatment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .treatment-card {
+    min-height: 0;
+  }
+}

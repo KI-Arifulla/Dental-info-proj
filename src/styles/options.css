@@ -1,0 +1,175 @@
+.options-page {
+  padding-bottom: 96px;
+}
+
+.options-header {
+  max-width: 760px;
+  margin-bottom: 32px;
+}
+
+.options-context {
+  margin: 0 0 24px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.options-page > .grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px;
+}
+
+.options-page .option-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 490px;
+  padding: 26px;
+  background: var(--surface);
+}
+
+.options-page .option-card {
+  cursor: pointer;
+  user-select: none;
+}
+
+.options-page .option-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.options-page .option-card.disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.option-badge {
+  align-self: flex-start;
+  margin-bottom: 14px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.option-selection-indicator {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.option-card.selected .option-selection-indicator {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.option-card h2 {
+  margin: 0 0 12px;
+  font-size: 1.3rem;
+}
+
+.option-card .price-badge {
+  align-self: flex-start;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: var(--text);
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.option-description {
+  min-height: 44px;
+  margin: 14px 0 20px;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.option-pros-cons {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.option-card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.option-card-actions a,
+.option-card-actions button {
+  text-align: center;
+}
+
+.option-card-actions .btn-secondary {
+  border-color: transparent;
+  background: var(--surface-muted);
+}
+
+.options-page .option-card .pros li,
+.options-page .option-card .cons li {
+  color: var(--text);
+}
+
+.option-card .btn-accent {
+  border-color: #d7ece9;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.options-page .compare-bar {
+  width: 100%;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.compare-bar-names {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.compare-bar-names small {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 900px) {
+  .options-page > .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .options-page .option-card {
+    min-height: 0;
+  }
+}

@@ -1,41 +1,47 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { getOptions, getTreatment } from '../data/treatments'
 import { ComparePanel } from '../components/compare/ComparePanel'
-import { ComparisonTable } from '../components/compare/ComparisonTable'
-import { Breadcrumbs } from '../components/layout/Breadcrumbs'
-import { useSelection } from '../utils/useSelection'
+import '../styles/compare.css'
 
 export function ComparePage() {
   const { treatmentId = '' } = useParams()
+  const [searchParams] = useSearchParams()
   const treatment = getTreatment(treatmentId)
-  const { selected } = useSelection()
-  const options = getOptions(treatmentId, selected)
+  const requestedIds = Array.from(
+    new Set((searchParams.get('selected') ?? '').split(',').filter(Boolean)),
+  )
+  const options = getOptions(treatmentId, requestedIds).slice(0, 3)
+  const selected = options.map((option) => option.id)
 
   if (!treatment || options.length === 0) {
     return (
-      <div className="page">
-        <p>Nothing to compare. Go back and select at least two options.</p>
-        <Breadcrumbs items={[{ label: 'Dashboard', to: '/' }, { label: treatment?.name ?? '' , to: `/treatment/${treatmentId}` }]} />
-      </div>
+      <main className="page empty-state">
+        <h1 className="headline">Nothing selected yet.</h1>
+        <p className="subhead">Choose at least one option to open the side-by-side view.</p>
+        <Link className="btn-primary" to={`/treatment/${treatmentId}`}>
+          Back to options
+        </Link>
+      </main>
     )
   }
 
   return (
-    <div className="page">
-      <Breadcrumbs
-        items={[
-          { label: 'Dashboard', to: '/' },
-          { label: treatment.name, to: `/treatment/${treatmentId}` },
-          { label: 'Compare' },
-        ]}
-      />
-      <h1>Compare {treatment.name}</h1>
+    <main className="page compare-page">
+      <header className="compare-header">
+        <div>
+          <span className="eyebrow">{treatment.name}</span>
+          <h1 className="headline">Side by side</h1>
+          <p className="subhead">{options.map((option) => option.name).join(' · ')}</p>
+        </div>
+        <Link className="btn-secondary" to={`/treatment/${treatmentId}`}>
+          Back to options
+        </Link>
+      </header>
       <div className="compare-panels">
         {options.map((o) => (
-          <ComparePanel key={o.id} option={o} />
+          <ComparePanel key={o.id} treatmentId={treatmentId} option={o} selectedIds={selected} />
         ))}
       </div>
-      <ComparisonTable options={options} />
-    </div>
+    </main>
   )
 }

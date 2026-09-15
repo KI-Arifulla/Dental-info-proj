@@ -7,7 +7,14 @@ export function TreatmentCard({ treatment }: { treatment: Treatment }) {
       <div className="treatment-icon">{treatment.icon}</div>
       <h3>{treatment.name}</h3>
       <p>{treatment.description}</p>
-      <span className="option-count">{treatment.options.length} options</span>
+      <ul className="treatment-option-list">
+        {treatment.options.map((option) => (
+          <li key={option.id}>{option.name}</li>
+        ))}
+      </ul>
+      <span className="btn-link treatment-explore-link" aria-hidden="true">
+        Explore
+      </span>
     </Link>
   )
 }

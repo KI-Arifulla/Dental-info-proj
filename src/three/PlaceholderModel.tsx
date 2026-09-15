@@ -1,8 +1,10 @@
 import { Suspense } from 'react'
-import { useGLTF } from '@react-three/drei'
-import type { ModelConfig } from '../data/types'
+import { Html, useGLTF } from '@react-three/drei'
+import type { DentalScene, ModelConfig } from '../data/types'
 import { getMaterialPreset } from './materialPresets'
 import { DentalGeometryMesh } from './toothGeometries'
+import { DentalSceneModel } from './DentalSceneModel'
+import type { DentalViewOptions } from './DentalSceneModel'
 
 function GLTFModel({ url }: { url: string }) {
   const { scene } = useGLTF(url)
@@ -34,11 +36,29 @@ function Primitive({ geometry, material, scale }: ModelConfig) {
   )
 }
 
-export function PlaceholderModel(config: ModelConfig) {
+export function PlaceholderModel({
+  scene,
+  stageIndex,
+  reveal,
+  ...config
+}: ModelConfig & DentalViewOptions & { scene?: DentalScene }) {
   if (config.modelUrl) {
     return (
       <Suspense fallback={<Primitive {...config} />}>
         <GLTFModel url={config.modelUrl} />
+      </Suspense>
+    )
+  }
+  if (scene) {
+    return (
+      <Suspense
+        fallback={
+          <Html center>
+            <span className="model-loading">Loading 3D model…</span>
+          </Html>
+        }
+      >
+        <DentalSceneModel scene={scene} stageIndex={stageIndex} reveal={reveal} />
       </Suspense>
     )
   }

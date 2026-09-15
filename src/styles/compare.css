@@ -1,0 +1,152 @@
+.compare-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.compare-header .subhead {
+  margin-bottom: 0;
+}
+
+.compare-header > .btn-secondary {
+  flex: none;
+}
+
+.compare-page .compare-panels {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
+}
+
+.compare-page .compare-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  background: var(--surface);
+  text-align: left;
+}
+
+.compare-model-placeholder {
+  position: relative;
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 0;
+}
+
+.compare-model-placeholder span {
+  width: 86px;
+  height: 112px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 150'%3E%3Cpath d='M31 17c12-9 20-4 29 0 9-4 17-9 29 0 15 12 9 31 4 45-5 13-5 48-18 48-10 0-6-29-15-29s-5 29-15 29c-13 0-13-35-18-48-5-14-11-33 4-45Z' fill='%23fff' stroke='%23c7cccb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M49 56h22v62c0 7-5 12-11 12s-11-5-11-12V56Z' fill='%23fff' stroke='%230d9488' stroke-width='2'/%3E%3Cpath d='M49 69h22M49 82h22M49 95h22M49 108h22' stroke='%230d9488' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-size: 0;
+}
+
+.compare-model-placeholder small {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+.compare-panel-heading {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.compare-panel-heading h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.compare-panel-heading .price-badge {
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 1.35rem;
+}
+
+.comparison-details {
+  flex: 1;
+}
+
+.compare-list-block {
+  margin-top: 20px;
+}
+
+.compare-list-block h3 {
+  margin: 0 0 10px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.compare-open-button {
+  display: block;
+  margin-top: 24px;
+  border-color: transparent;
+  background: var(--surface-muted);
+  text-align: center;
+}
+
+.compare-page .pros li,
+.compare-page .cons li {
+  color: var(--text);
+}
+
+.empty-state {
+  text-align: center;
+  padding-top: 120px;
+}
+
+@media (max-width: 900px) {
+  .compare-page .compare-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-header {
+    flex-direction: column;
+  }
+}
+
+.compare-cross-section {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fbf8f2;
+  border: 1px solid var(--border);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.compare-cross-section:hover,
+.compare-cross-section:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(23, 25, 24, 0.08);
+}
+
+.cross-section {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.compare-cross-section-hint {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
