@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CLINIC_NAME, DEFAULT_PASSCODE } from '../config/appConfig'
+import { authApi } from '../api/client'
+import { CLINIC_NAME, PASSCODE_LENGTH } from '../config/appConfig'
 import { useAuth } from '../context/useAuth'
 import '../styles/lock.css'
 
 export function LockScreen() {
   const [entered, setEntered] = useState('')
   const [hasError, setHasError] = useState(false)
+  const [message, setMessage] = useState('')
+  const [checking, setChecking] = useState(false)
   const errorTimerRef = useRef<number | null>(null)
   const { unlock } = useAuth()
   const navigate = useNavigate()
@@ -18,20 +21,23 @@ export function LockScreen() {
     [],
   )
 
-  function continueToTreatments() {
-    unlock()
-    navigate('/treatments')
-  }
-
-  function enterDigit(digit: string) {
-    if (hasError || entered.length >= DEFAULT_PASSCODE.length) return
+  async function enterDigit(digit: string) {
+    if (hasError || checking || entered.length >= PASSCODE_LENGTH) return
     const next = `${entered}${digit}`
     setEntered(next)
+    setMessage('')
 
-    if (next.length !== DEFAULT_PASSCODE.length) return
-    if (next === DEFAULT_PASSCODE) {
-      continueToTreatments()
+    if (next.length !== PASSCODE_LENGTH) return
+    setChecking(true)
+    try {
+      await authApi.login(next)
+      unlock()
+      navigate('/cases')
       return
+    } catch (error) {
+      setMessage((error as Error).message)
+    } finally {
+      setChecking(false)
     }
 
     setHasError(true)
@@ -59,7 +65,7 @@ export function LockScreen() {
       <section className={`lock-keypad-panel${hasError ? ' keypad-error' : ''}`}>
         <h2>Clinic passcode</h2>
         <div className="keypad-dots" aria-label={`${entered.length} digits entered`}>
-          {Array.from({ length: DEFAULT_PASSCODE.length }, (_, index) => (
+          {Array.from({ length: PASSCODE_LENGTH }, (_, index) => (
             <span
               key={index}
               className={`keypad-dot${index < entered.length ? ' filled' : ''}${
@@ -92,9 +98,9 @@ export function LockScreen() {
             ⌫
           </button>
         </div>
-        <button type="button" className="btn-link lock-skip" onClick={continueToTreatments}>
-          Continue without passcode
-        </button>
+        <p className="lock-skip" role="status">
+          {message}
+        </p>
       </section>
     </main>
   )

@@ -17,6 +17,7 @@ export function Header() {
         {CLINIC_NAME}
       </NavLink>
       <div className="app-nav-links">
+        <NavLink to="/cases">Cases</NavLink>
         <NavLink to="/treatments">Treatments</NavLink>
         <NavLink to="/settings">Settings</NavLink>
         <button type="button" className="app-nav-lock" onClick={handleLock}>

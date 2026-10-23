@@ -44,6 +44,24 @@ export interface ModelConfig {
   modelUrl?: string
 }
 
+export interface Faq {
+  question: string
+  answer: string
+}
+
+/** Patient-facing decision facts. Ranges, never guarantees: outcomes depend on the individual case. */
+export interface OptionDecisionFacts {
+  longevity: { min: number; max: number; unit: 'years' | 'months'; note?: string }
+  visits: string
+  duration: string
+  comfort: string
+  appearance: string
+  maintenance: string
+  ifItFails: string
+  /** Extra procedures, costs or habits the patient should plan for with this option. */
+  considerations: string[]
+}
+
 export interface TreatmentOption {
   id: string
   name: string
@@ -57,6 +75,21 @@ export interface TreatmentOption {
   specs: OptionSpec[]
   model: ModelConfig
   modelLabel?: string
+}
+
+export interface OptionGuide {
+  facts: OptionDecisionFacts
+  faqs: Faq[]
+}
+
+export interface TreatmentGuide {
+  /** Plain-language summary of the underlying problem. */
+  problem: string
+  /** What may happen without treatment. Possibilities, not predictions. */
+  ifUntreated: { label: string; description: string }[]
+  warningSigns: string[]
+  aftercare: string[]
+  faqs: Faq[]
 }
 
 export interface Treatment {

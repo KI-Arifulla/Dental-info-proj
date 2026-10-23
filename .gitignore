@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .gstack/
 backups/
+
+# Local clinic data (patients, uploads)
+data/

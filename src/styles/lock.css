@@ -72,7 +72,11 @@
 
 .lock-skip {
   align-self: center;
-  margin-top: 30px;
+  min-height: 1.4em;
+  margin: 30px 0 0;
+  color: var(--danger);
+  font-weight: 600;
+  text-align: center;
 }
 
 .keypad-error {
